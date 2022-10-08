@@ -1,0 +1,25 @@
+{
+  "name": "solving-test.bash-2022-ui-challenge-with-cypress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/claimsecond/Test.Bash-2022-UI-Challenge-With-Cypress.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/claimsecond/Test.Bash-2022-UI-Challenge-With-Cypress/issues"
+  },
+  "homepage": "https://github.com/claimsecond/Test.Bash-2022-UI-Challenge-With-Cypress#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^7.5.0",
+    "cypress": "^10.9.0",
+    "prettier": "^2.7.1"
+  }
+}
