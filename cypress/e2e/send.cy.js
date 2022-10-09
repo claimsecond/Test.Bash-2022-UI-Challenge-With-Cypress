@@ -1,8 +1,9 @@
 /// <reference types="cypress" />
 import { faker } from '@faker-js/faker';
 
+// added some custom command to ease the code
 Cypress.Commands.add('got', (testId) => {
-    return cy.get(`[data-testid="$testId"]`)
+    return cy.get(`[data-testid="${testId}"]`)
 })
 
 it("sends the message", () => {
@@ -11,7 +12,7 @@ it("sends the message", () => {
     const email = faker.internet.email();
     const phone = faker.phone.number();
     const subject = faker.word.noun(5); 
-    const messagebody = faker.lorem.paragraph(2);
+    const messagebody = faker.lorem.paragraph(1);
 
     // enter data in the form
     cy.visit("/")
