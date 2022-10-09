@@ -1,26 +1,30 @@
 /// <reference types="cypress" />
 import { faker } from '@faker-js/faker';
 
+Cypress.Commands.add('got', (testId) => {
+    return cy.get(`[data-testid="$testId"]`)
+})
 
-it("sends the message",() => {
+it("sends the message", () => {
+    // initialize some fake data to load
     const name = faker.name.firstName();
     const email = faker.internet.email();
     const phone = faker.phone.number();
     const subject = faker.word.noun(5); 
     const messagebody = faker.lorem.paragraph(2);
 
+    // enter data in the form
     cy.visit("/")
     cy.get(".row.contact form").within(() => {
-        cy.get('[data-testid="ContactName"]').type(name)
-        cy.get('[data-testid="ContactEmail"]').type(email)
-        cy.get('[data-testid="ContactPhone"]').type(phone)
-        cy.get('[data-testid="ContactSubject"]').type(subject)
-        cy.get('[data-testid="ContactDescription"]').type(messagebody)
+        cy.got('ContactName').type(name)
+        cy.got('ContactEmail').type(email)
+        cy.got('ContactPhone').type(phone)
+        cy.got('ContactSubject').type(subject)
+        cy.got('ContactDescription').type(messagebody)
         cy.get('#submitContact').click()
     })
     
-    cy.log('**checking messages**')
-    
+    // admin login
     cy.on('uncaught:exception', () => false)
     cy.visit('/#/admin')
     cy.get('[data-testid="username"]').type('admin')
@@ -34,6 +38,8 @@ it("sends the message",() => {
         .find('a[href="#/admin/messages"]')
         .click()
     cy.location('hash').should('equal', '#/admin/messages')
+
+    //check the message
     cy.get('.row.detail')
         .should('have.length.greaterThan', 0)
         .contains('.row', subject)
